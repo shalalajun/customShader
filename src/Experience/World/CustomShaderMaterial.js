@@ -1,6 +1,8 @@
 import * as THREE from 'three' 
 import vertex from '../../Shaders/vertex.glsl'
 import fragment from '../../Shaders/fragment.glsl'
+import Experience from '../Experience.js'
+
 
 export default class CustomShaderMaterial extends THREE.ShaderMaterial
 {
@@ -9,18 +11,23 @@ export default class CustomShaderMaterial extends THREE.ShaderMaterial
     {
         super()
 
-        
+        this.loader = new THREE.TextureLoader()
+        this.rampTex = this.loader.load('textures/ramp6.png')
+        console.log(this.rampTex)
 
         this.lights = true,
         this.uniforms = THREE.UniformsUtils.merge([
+
             THREE.UniformsLib["lights"],
             THREE.UniformsLib["shadowmap"],
+            
             {
-                diffuseColor: { value: new THREE.Color(options.color) },
-                envMap: { value : options.envMap },
-                uGlossiness: { value : 0.0 },
-                rimColor: { value: new THREE.Color(options.rimColor) },
-                rimPower: { value: 5.0}
+                //diffuseColor: { value: new THREE.Color(options.color) },
+                // envMap: { value : options.envMap },
+                // uGlossiness: { value : 2.0 },
+                // rimColor: { value: new THREE.Color(options.rimColor) },
+                // rimPower: { value: 5.0},
+                rampTex : { value: this.rampTex}
             }
         ]);
 
@@ -36,25 +43,25 @@ export default class CustomShaderMaterial extends THREE.ShaderMaterial
         // this.uniforms.time.value += delta;
     }
     
-    set color(color) {
-        if (this.uniforms) {
-            this.uniforms.diffuseColor.value = new THREE.Color(color);
-        }
-    }
+    // set color(color) {
+    //     if (this.uniforms) {
+    //         this.uniforms.diffuseColor.value = new THREE.Color(color);
+    //     }
+    // }
 
-    set rimColor(color) {
-        if (this.uniforms) {
-            this.uniforms.rimColor.value = new THREE.Color(color);
-        }
-    }
+    // set rimColor(color) {
+    //     if (this.uniforms) {
+    //         this.uniforms.rimColor.value = new THREE.Color(color);
+    //     }
+    // }
 
-    get color() {
-        return this.uniforms.diffuseColor.value;
-    }
+    // get color() {
+    //     return this.uniforms.diffuseColor.value;
+    // }
 
-    get rimColor() {
-        return this.uniforms.rimColor.value;
-    }
+    // get rimColor() {
+    //     return this.uniforms.rimColor.value;
+    // }
 }
 
 

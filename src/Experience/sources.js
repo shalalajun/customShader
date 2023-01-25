@@ -23,8 +23,18 @@ export default [
         path: 'textures/dirt/normal.jpg'
     },
     {
+        name: 'rampTex',
+        type: 'texture',
+        path: 'textures/ramp6.png'
+    },
+    {
         name: 'foxModel',
         type: 'gltfModel',
         path: 'models/Fox/glTF/Fox.gltf'
+    },
+    {
+        name: 'girlModel',
+        type: 'gltfModel',
+        path: 'models/Girl/girl.glb'
     }
 ]
