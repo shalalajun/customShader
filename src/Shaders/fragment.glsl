@@ -86,8 +86,8 @@ void main()
     );
 
 
-    float NdotL = dot(vNormal, directionalLights[0].direction);
-    NdotL = (NdotL * shadow) * 0.5 + 0.5;
+    float NdotL = dot(vNormal, directionalLights[0].direction) * 0.5 + 0.5;
+    NdotL = (NdotL * (shadow * 0.5  + 0.5));
    
    //vec3 NdotLCol = mix(vec3(0.0,0.0,1.0),vec3(1.0,1.0,1.0),NdotL);
   
