@@ -12,8 +12,21 @@ export default class CustomShaderMaterial extends THREE.ShaderMaterial
         super()
 
         this.loader = new THREE.TextureLoader()
-        this.rampTex = this.loader.load('textures/ramp6.png')
+        this.rampTex = this.loader.load('textures/ramp7.png')
+       // this.rampTex.encoding = THREE.sRGBEncoding
+        this.rampTex.flipY = false;
         console.log(this.rampTex)
+        
+        
+        this.girlTex = this.loader.load('textures/girlTex.png')
+        this.girlTex.encoding = THREE.sRGBEncoding
+        this.girlTex.wrapS = THREE.RepeatWrapping;
+        this.girlTex.wrapT = THREE.RepeatWrapping;
+        this.girlTex.repeat.set( 1, 1 );
+        this.girlTex.flipY = false;
+        
+        console.log(this.girlTex)
+
 
         this.lights = true,
         this.uniforms = THREE.UniformsUtils.merge([
@@ -27,7 +40,8 @@ export default class CustomShaderMaterial extends THREE.ShaderMaterial
                 // uGlossiness: { value : 2.0 },
                 // rimColor: { value: new THREE.Color(options.rimColor) },
                 // rimPower: { value: 5.0},
-                rampTex : { value: this.rampTex}
+                rampTex : { value: this.rampTex},
+                girlTex : { value: this.girlTex}
             }
         ]);
 

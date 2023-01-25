@@ -11,6 +11,7 @@ uniform vec3 rimColor;
 uniform float rimPower;
 uniform samplerCube envMap;
 uniform sampler2D rampTex;  
+uniform sampler2D girlTex; 
 
 varying vec2 vUv;
 varying vec3 vNormal;
@@ -137,9 +138,10 @@ void main()
 
     // vec3 finalColor = vec3(envColor) + diffuseColor * directionalLight;
     vec3 rimCol = texture2D(rampTex,vec2(NdotL,0.5)).xyz;
+    vec3 texCol = texture2D(girlTex,vUv).xyz;
 
 
-    gl_FragColor = vec4(rimCol,1.0);
+    gl_FragColor = vec4(rimCol * texCol,1.0);
 }
 
 
